@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class="container"><br>
+    <h1 class="text-success text-center">Form Validation</h1>
+    <div class="col-lg-8 m-auto d-block"><br>
+      <form action="#" onsubmit="return validation()" class="bg-light">
+        <div class="form-group">
+          <label for="user">Username:</label>
+          <input type="text" name="user" class="form-control" id="user" autocomplete="off" oninput="clearErrorById('User')">
+          <span id="User" class="text-danger font-weight-bold"></span>
+        </div>
+        <div class="form-group">
+          <label for="Pass">Password</label>
+          <input type="password" name="pass" class="form-control" id="pass" autocomplete="off" oninput="clearErrorById('Pass')"> 
+          <span id="Passwords" class="text-danger font-weight-bold"></span>
+        </div>
+        <div class="form-group">
+          <label for="conpass">Confirm Password</label>
+          <input type="password" name="conpass" class="form-control" id="conpass" autocomplete="off" oninput="clearErrorById('conpass')"> 
+          <span id="confirmPass" class="text-danger font-weight-bold"></span>
+        </div>
+        <div class="form-group">
+          <label for="number">Mobile Number</label>
+          <input type="text" name="number" class="form-control" id="number" autocomplete="off" oninput="clearErrorById('number')"> 
+          <span id="MobileNum" class="text-danger font-weight-bold"></span>
+        </div> 
+        <div class="form-group">
+          <label for="emails">Email</label>
+          <input type="text" name="email" class="form-control" id="emails" autocomplete="off"  oninput="clearErrorById('emails')"> 
+          <span id="Emailid" class="text-danger font-weight-bold"></span>
+        </div> 
+        <input type="submit" name="submit" value="Submit" class="btn btn-success">
+      </form>
+    </div>
+  </div>
+  <script type="text/javascript">
+    function validation() {
+      var user = document.getElementById('user').value;
+      var pass = document.getElementById('pass').value;
+      var confirmpass = document.getElementById('conpass').value;
+      var mobilenumber = document.getElementById('number').value;
+      var emails = document.getElementById('emails').value; 
+      
+      if (user == "") {
+        document.getElementById('User').innerHTML = "Please fill the username field";
+        return false; 
+      }
+      if ((user.length <= 2) || (user.length > 20)){
+      	document.getElementById('User').innerHTML =" user  length must  2 to 20";
+      	return false;
+      	}
+      	if(!isNaN(user)){
+      		document.getElementById('User').innerHTML=" only character are allowed";
+      		return false; 
+      	}
+
+      if (pass == "") {
+        document.getElementById('Passwords').innerHTML = "Please fill the password field";
+        return false;
+      }
+      if ((pass.length <= 5) || (pass.length > 20)){
+      	document.getElementById('Passwords').innerHTML =" passs must  2 to 20";
+      	return false;
+}
+if(pass!=confirmpass){
+	document.getElementById('confirmPass').innerHTML =" pass not matching ";
+	return false;
+}
+      if (confirmpass == "") {
+        document.getElementById('confirmPass').innerHTML = "Please fill the confirm password field";
+        return false;
+      }
+
+      if (mobilenumber == "") {
+        document.getElementById('MobileNum').innerHTML = "Please fill the mobile number field";
+        return false;
+      }
+      if(isNaN(mobilenumber)){
+      	document.getElementById ('MobileNum').innerHTML ="must use digits characters not allowed";
+      	return false;
+      }
+      if(mobilenumber.length!=10){
+      	document.getElementById('MobileNum').innerHTML="mobile numvber must be 10 digits";
+      	return false;
+      }
+
+      if (emails == "") {
+        document.getElementById('Emailid').innerHTML = "Please fill the email field";
+        return false;
+      }
+      if(emails.indexOf('@') <= 0){
+      	document.getElementById('Emailid').innerHTML = " ** @ invalid pos";
+      	return false;
+      }
+      if((emails.charAt(emails.length-4)!='.') && (emails.charAt(emails.length-3)!='.')){
+      	document.getElementById('Emailid').innerHTML=" ** invalid Pos ";
+      	return false;
+      }
+      return true;
+    }
+  </script>
+</body>
+</html>
